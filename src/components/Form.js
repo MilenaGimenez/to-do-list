@@ -11,7 +11,7 @@ const Form = ({setTodos, todos, inputText, setInputText, setStatus}) => {
             id: Math.random() * 10000    
         }])
 
-        //para que cuando acabe este vacio
+        //para que cuando acabe estes vacio
         setInputText('')
     }
 
