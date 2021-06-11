@@ -1,6 +1,6 @@
 {
   "homepage": "https://MilenaGimenez.github.io/to-do-list",
-  "name": "proyecto-todo-list",
+  "name": "to-do-list",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
