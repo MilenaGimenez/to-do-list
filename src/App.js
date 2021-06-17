@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import {db} from './firebase-config'
 import './App.css';
 
 import Form from './components/Form';
@@ -13,41 +14,42 @@ function App() {
   const [status, setStatus] = useState('all');
   const [filteredTodos, setFilteredTodos] = useState([]);
 
-  const getLocalTodos = () => {
-    if(localStorage.getItem('todos') === null){//para prevenir errores
-      localStorage.setItem('todos', JSON.stringify(todos))
-    } else {
-      const todoLocal = JSON.parse(localStorage.getItem('todos'))
-      setTodos(todoLocal)
-    }
+  const traerDesdeFirebase = () => {
+    db.collection("todos").get().then((querySnapshot) => {
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          // console.log(doc.id, " => ", doc.data());
+          docs.push({...doc.data(), id: doc.id})
+        });
+        setTodos(docs)
+    });
   }
 
+
   useEffect(() => { 
-    getLocalTodos();
-  }, []);
+    traerDesdeFirebase();
+  }, [todos]);
 
   useEffect(() => {
     const filteredHandler = () => {
-        switch(status){
-          case 'completed' : 
+      switch(status) {
+        case 'completed' :
           setFilteredTodos(todos.filter(tarea => tarea.completed === true))
-          break;
-          case 'uncomplete' : 
+        break;
+        case 'uncompleted' :
           setFilteredTodos(todos.filter(tarea => tarea.completed === false))
-          break;
-          default:
-            setFilteredTodos(todos);
-          }
-        }
-        //gurdar en local storage
-        //es buena practica poner este tipo de funciones en useeffect para que no se esten ejecuntando solas
-        const saveLocalTodos = () => {
-          localStorage.setItem('todos', JSON.stringify(todos))
-        };
-
-        filteredHandler()    
-        saveLocalTodos()
-  }, [todos, status]);//que reaccione cuando el usuario cambie o elimine, o cuando cambie el estado
+        break;
+        default:
+          setFilteredTodos(todos);
+      }
+    }
+    // const saveLocalTodos = () => {
+    //   localStorage.setItem('todos', JSON.stringify(todos))
+    // }
+    filteredHandler();
+    // saveLocalTodos();
+  },[todos, status])//que reaccione cuando el usuario cambie o elimine, o cuando cambie el estado
 
 
  
@@ -63,11 +65,12 @@ function App() {
         inputText={inputText}
         setInputText={setInputText}
         setStatus={setStatus}
+        status={status}
       />
       <TodoList 
         todos={todos}
         setTodos={setTodos}
-        filteredTodos={filteredTodos}
+        filteredTodos={filteredTodos}        
       />      
     </div>
   );

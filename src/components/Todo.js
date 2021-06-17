@@ -1,17 +1,39 @@
+import {db} from '../firebase-config';
+
 const Todo = ({todo, setTodos, todos}) => {
     const deleteHandler = () => {
-        setTodos(todos.filter(tarea => tarea.id !== todo.id))
+        // setTodos(todos.filter(tarea => tarea.id !== todo.id))
+        // console.log(todo.id)
+        db.collection("todos").doc(todo.id).delete().then(() => {
+          console.log("Document successfully deleted!");
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
     }
 
-    const completeHandler = e => {
-        setTodos(todos.map(item => {
-            if(todo.id === item.id){
-                return {
-                    ...item, completed: !item.completed //hacemos una copia de ese item, y le metemos lo otro dentro. pone en falso o verdadero el item
-                }
-            }
-            return item; //map necesita un retorno
-        }))//setTodos es la funcion que actualiza el estado
+    const completeHandler = () => {
+        // setTodos(todos.map(item => {
+        //   if(todo.id === item.id){
+        //     return {
+        //       ...item, completed: !item.completed
+        //     }
+        //   }
+        //   return item;
+        // }))
+        editarCompleted(todo)
+    }
+
+    const editarCompleted = tarea => {
+        // Add a new document in collection "cities"
+        db.collection("todos").doc(tarea.id).set({
+          ...tarea, completed: !tarea.completed
+        })
+        .then(() => {
+          console.log("Document successfully written!");
+        })
+        .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
     }
 
     return (
