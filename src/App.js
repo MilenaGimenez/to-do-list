@@ -4,6 +4,7 @@ import './App.css';
 
 import Form from './components/Form';
 import TodoList from './components/TodoList';
+import Contador from './components/Contador';
 
 
 function App() {
@@ -66,6 +67,9 @@ function App() {
         setInputText={setInputText}
         setStatus={setStatus}
         status={status}
+      />
+      <Contador 
+        todos={todos}
       />
       <TodoList 
         todos={todos}

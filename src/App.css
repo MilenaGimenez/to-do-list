@@ -157,3 +157,9 @@ select {
 .boton-rojo{
   background-color: red;
 }
+
+.contador-tareas{
+  text-align: center;
+  margin-bottom: 3%;
+  font-size: 1.3rem;
+}
