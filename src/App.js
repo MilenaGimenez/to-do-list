@@ -15,11 +15,9 @@ function App() {
   const [filteredTodos, setFilteredTodos] = useState([]);
 
   const traerDesdeFirebase = () => {
-    db.collection("todos").get().then((querySnapshot) => {
+    db.collection("todos").onSnapshot((querySnapshot) => {
       const docs = [];
       querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
-          // console.log(doc.id, " => ", doc.data());
           docs.push({...doc.data(), id: doc.id})
         });
         setTodos(docs)
@@ -27,9 +25,7 @@ function App() {
   }
 
 
-  useEffect(() => { 
-    traerDesdeFirebase();
-  }, [todos]);
+  useEffect(traerDesdeFirebase, [])
 
   useEffect(() => {
     const filteredHandler = () => {
@@ -44,12 +40,8 @@ function App() {
           setFilteredTodos(todos);
       }
     }
-    // const saveLocalTodos = () => {
-    //   localStorage.setItem('todos', JSON.stringify(todos))
-    // }
     filteredHandler();
-    // saveLocalTodos();
-  },[todos, status])//que reaccione cuando el usuario cambie o elimine, o cuando cambie el estado
+  },[todos, status])
 
 
  

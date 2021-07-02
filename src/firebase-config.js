@@ -3,13 +3,13 @@ import 'firebase/firestore';
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-    apiKey: "AIzaSyBPxiN6w1_GIspm2HAHSMP1EBIya2ldeRE",
-    authDomain: "todolist-5977d.firebaseapp.com",
-    projectId: "todolist-5977d",
-    storageBucket: "todolist-5977d.appspot.com",
-    messagingSenderId: "570680421845",
-    appId: "1:570680421845:web:80414bbb21f79d4296215c"
-  };
+  apiKey: "AIzaSyAsoddnuZIT6aqqLeWJ8OAu32IyF2YJtHE",
+  authDomain: "todo-list-ac2a0.firebaseapp.com",
+  projectId: "todo-list-ac2a0",
+  storageBucket: "todo-list-ac2a0.appspot.com",
+  messagingSenderId: "185678045488",
+  appId: "1:185678045488:web:4bc72c63e60d0c02ef28f5"
+};
   // Initialize Firebase
   const fb = firebase.initializeApp(firebaseConfig);
   export const db = fb.firestore() //guardar en variable la base de datos
