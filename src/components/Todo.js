@@ -1,9 +1,7 @@
 import {db} from '../firebase-config';
 
-const Todo = ({todo, setTodos, todos}) => {
+const Todo = ({todo}) => {
     const deleteHandler = () => {
-        // setTodos(todos.filter(tarea => tarea.id !== todo.id))
-        // console.log(todo.id)
         db.collection("todos").doc(todo.id).delete().then(() => {
           console.log("Document successfully deleted!");
         }).catch((error) => {
@@ -11,17 +9,8 @@ const Todo = ({todo, setTodos, todos}) => {
         });
     }
 
-    const completeHandler = () => {
-        // setTodos(todos.map(item => {
-        //   if(todo.id === item.id){
-        //     return {
-        //       ...item, completed: !item.completed
-        //     }
-        //   }
-        //   return item;
-        // }))
-        editarCompleted(todo)
-    }
+    const completeHandler = () => editarCompleted(todo)
+    
 
     const editarCompleted = tarea => {
         // Add a new document in collection "cities"
@@ -37,15 +26,16 @@ const Todo = ({todo, setTodos, todos}) => {
     }
 
     return (
-            <div className="todo">
-                <li className={`todo-item ${todo.completed && "completed"}`}>{todo.text}</li>
-                <button onClick={completeHandler} className={`complete-btn ${todo.completed && "boton-rojo"}`}>
-                    <i className="fas fa-check"></i>
-                </button>
-                <button onClick={deleteHandler} className="trash-btn">
-                    <i className="fas fa-trash"></i>
-                </button>
-            </div>
+
+          <div className="todo">
+              <li className={`todo-item ${todo.completed && "completed"}`}>{todo.text}</li>
+              <button onClick={completeHandler} className={`complete-btn ${todo.completed && "boton-rojo"}`}>
+                  <i className="fas fa-check"></i>
+              </button>
+              <button onClick={deleteHandler} className="trash-btn">
+                  <i className="fas fa-trash"></i>
+              </button>
+          </div>
     );
 }
 
