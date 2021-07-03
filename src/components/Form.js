@@ -70,7 +70,7 @@ const Form = ({setTodos, todos, inputText, setInputText, setStatus, status}) => 
                 >
                     <option value="all">Todas</option>
                     <option value="completed">Completas</option>
-                    <option value="uncomplete">Incompletas</option>
+                    <option value="uncompleted">Incompletas</option>
                 </select>
             </div>
             {/* prueba */}
