@@ -1,8 +1,8 @@
-const Contador = ({todos}) => {    
-
+const Contador = ({todos, counter}) => {  
+    counter = todos.length
     return (
         <div className="contador-tareas">
-          {todos.length === 0 ? <span>¡No quedan tareas pendientes!</span> : <span>Te quedan {todos.filter((todo) => !todo.completed).length} tareas por terminar</span>}
+          {counter === 0 ? <span>¡No quedan tareas pendientes!</span> : <span>Te quedan {todos.filter((todo) => !todo.completed).length} tareas por terminar</span>}
         </div>
     );
 };
