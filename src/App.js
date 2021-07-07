@@ -14,6 +14,7 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState('all');
   const [filteredTodos, setFilteredTodos] = useState([]);
+  const [counter, setCounter] = useState([]);
 
   const traerDesdeFirebase = () => {
     db.collection("todos").onSnapshot((querySnapshot) => {
@@ -62,6 +63,8 @@ function App() {
       />
       <Contador 
         todos={todos}
+        counter={counter}
+        setCounter={setCounter}
       />
       <TodoList 
         todos={todos}
