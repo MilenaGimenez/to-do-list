@@ -1,5 +1,9 @@
+// -------------- Componente de TodoList (Filtro de tareas)--------------
+
+//Import de componente Todo
 import Todo from './Todo';
 
+//Función para devolver tareas filtradas
 const TodoList = ({filteredTodos}) => {
     return(
         <div>

@@ -1,21 +1,25 @@
+//Import de hooks y variable de firebase
 import {useState, useEffect} from 'react';
 import {db} from './firebase-config'
+
+//Import de hoja de estilos
 import './App.css';
 
+//Import de componentes
 import Form from './components/Form';
 import TodoList from './components/TodoList';
 import Contador from './components/Contador';
 
 
-function App() {
-  
-  //Estos son estados
+function App() {  
+  //Estados
   const [inputText, setInputText] = useState('');
   const [todos, setTodos] = useState([]);
   const [status, setStatus] = useState('all');
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [counter, setCounter] = useState([]);
 
+  //Función traer datos desde Firebase
   const traerDesdeFirebase = () => {
     db.collection("todos").onSnapshot((querySnapshot) => {
       const docs = [];
@@ -24,11 +28,12 @@ function App() {
         });
         setTodos(docs)
     });
-  }
+  };
 
+  //UseEffect de traer datos desde Firebase
+  useEffect(traerDesdeFirebase, []);
 
-  useEffect(traerDesdeFirebase, [])
-
+  //UseEffect de filtrar datos por completos, incompletos y todos
   useEffect(() => {
     const filteredHandler = () => {
       switch(status) {
@@ -40,12 +45,10 @@ function App() {
         break;
         default:
           setFilteredTodos(todos);
-      }
-    }
+      };
+    };
     filteredHandler();
-  },[todos, status])
-
-
+  },[todos, status]);
  
 
   return (
@@ -73,6 +76,6 @@ function App() {
       />      
     </div>
   );
-}
+};
 
 export default App;

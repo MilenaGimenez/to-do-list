@@ -1,9 +1,15 @@
+// -------------- Componente de formulario de tareas --------------
+
+//Import de hook y de variable de firebase
 import {useState} from 'react';
 import {db} from '../firebase-config';
 
-const Form = ({setTodos, todos, inputText, setInputText, setStatus, status}) => {
+//Función del formulario
+const Form = ({setTodos, todos, inputText, setInputText, setStatus}) => {
+    //Estado de error
     const [error, setError] = useState(false);
 
+    //Función submit tarea
     const submitTodoHandler = e => {
         if(inputText.trim().length === 0){
             setError(true);
@@ -30,12 +36,14 @@ const Form = ({setTodos, todos, inputText, setInputText, setStatus, status}) => 
         setInputText('')
     };
 
-    const inputTextHandler = e => setInputText(e.target.value) 
-    const statusHandler = e => setStatus(e.target.value);
+    //Función set nombre de tarea
+    const inputTextHandler = e => setInputText(e.target.value);
     
+    //Función de set status de tarea
+    const statusHandler = e => setStatus(e.target.value);    
 
+    //Función guardar datos en firebase
     const guardarEnFirebase = tarea => {
-        // Add a new document with a generated id.
         db.collection("todos").add(tarea)
         .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
@@ -43,7 +51,7 @@ const Form = ({setTodos, todos, inputText, setInputText, setStatus, status}) => 
         .catch((error) => {
         console.error("Error adding document: ", error);
         });
-    }
+    };
    
     return(
         <form>
@@ -72,11 +80,9 @@ const Form = ({setTodos, todos, inputText, setInputText, setStatus, status}) => 
                     <option value="completed">Completas</option>
                     <option value="uncompleted">Incompletas</option>
                 </select>
-            </div>
-            
-            <div>
-               
-            <p className="alert-error">{error && 'Todos los datos son obligatorios!!'}</p> 
+            </div>            
+            <div>               
+                <p className="alert-error">{error && 'Todos los datos son obligatorios!!'}</p> 
             </div>  
         </form>     
     );

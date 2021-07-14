@@ -12,5 +12,4 @@ var firebaseConfig = {
 };
   // Initialize Firebase
   const fb = firebase.initializeApp(firebaseConfig);
-  export const db = fb.firestore() //guardar en variable la base de datos
-  //export para hacerlo accesible a cualquier archiv de nuestra app
+  export const db = fb.firestore()
