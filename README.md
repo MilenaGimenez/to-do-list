@@ -1,13 +1,15 @@
 # 📝 Todo List - App de registro de tareas
 
+### 🖱 Podes utilizar la app haciendo click [aquí](https://milenagimenez.github.io/to-do-list/)
+
 ![imagen](./public/assets/screen-animated.gif)
 
 ***
 
 - ### ¡Organiza tus tareas con Todo List App!
--  ### Vas a poder guardar todas las tareas que tengas que hacer.
--  ### Podes marcarlas como realizadas, para tener un mejor orden.
--  ### Incluso si ya las hiciste, ¡podes eliminarlas!
+- ### Vas a poder guardar todas las tareas que tengas que hacer.
+- ### Podes marcarlas como realizadas, para tener un mejor orden.
+- ### Incluso si ya las hiciste, ¡podes eliminarlas!
 
 ***
 
