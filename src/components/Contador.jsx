@@ -1,5 +1,6 @@
 // -------------- Componente de contador de tareas pendientes --------------
 
+//Función de contador de tareas pendientes
 const Contador = ({todos, counter}) => {  
     counter = todos.length
     return (

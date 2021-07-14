@@ -1,4 +1,6 @@
 // -------------- Componente de formulario de tareas --------------
+//Import de Proptypes
+import PropTypes from 'prop-types'
 
 //Import de hook y de variable de firebase
 import {useState} from 'react';
@@ -86,6 +88,13 @@ const Form = ({setTodos, todos, inputText, setInputText, setStatus}) => {
             </div>  
         </form>     
     );
+};
+
+Form.propTypes = {
+    submitTodoHandler: PropTypes.func,
+    guardarEnFirebase: PropTypes.func, 
+    inputTextHandler: PropTypes.func, 
+    statusHandler: PropTypes.func
 };
 
 export default Form;
