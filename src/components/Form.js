@@ -73,17 +73,9 @@ const Form = ({setTodos, todos, inputText, setInputText, setStatus, status}) => 
                     <option value="uncompleted">Incompletas</option>
                 </select>
             </div>
-            {/* prueba */}
+            
             <div>
-                {/* <button
-                onClick={submitTodoHandler}
-                variant="contained"
-                color="primary"
-                className={classes.button></button>}
-                endIcon={<Icon>send</Icon>}
-                >
-                Send
-                </button> */}
+               
             <p className="alert-error">{error && 'Todos los datos son obligatorios!!'}</p> 
             </div>  
         </form>     
