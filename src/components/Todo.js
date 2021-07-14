@@ -1,4 +1,6 @@
 // -------------- Componente de Todo (tareas)--------------
+//Import de Proptypes
+import PropTypes from 'prop-types'
 
 //Import de variable de firebase
 import {db} from '../firebase-config';
@@ -41,6 +43,12 @@ const Todo = ({todo}) => {
               </button>
           </div>
     );
+};
+
+Todo.propTypes = {
+  deleteHandler: PropTypes.func,
+  completeHandler: PropTypes.func,
+  editarCompleted: PropTypes.func
 };
 
 export default Todo;
